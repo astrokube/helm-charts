@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "factorio.fullname" . }}
+  labels:
+    {{- include "factorio.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "factorio.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "factorio.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "factorio.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 34197
+              protocol: UDP
+              name: factorio
+            - containerPort: 27015
+              protocol: TCP
+              name: rcon
+          livenessProbe:
+            tcpSocket:
+              port: 27015
+          readinessProbe:
+            tcpSocket:
+              port: 27015
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key | quote }}
+              value: {{ $value | quote }}
+            {{- end }}
+          volumeMounts:
+            - mountPath: /factorio
+              name: data
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "factorio.fullname" .) }}
+          {{- else }}
+          emptyDir: {}
+          {{ end }}
