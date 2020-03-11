@@ -1,0 +1,21 @@
+apiVersion: v1
+entries:
+  factorio:
+  - apiVersion: v2
+    appVersion: 0.18.9
+    created: "2020-03-11T19:56:11.803769839+01:00"
+    description: A Helm chart for Factorio server
+    digest: dad06c684f33ca01d1cff8d5237ed5a5e9a1fe89299ca1cd849b071055ef7937
+    home: https://factorio.com/
+    keywords:
+    - factorio
+    - game
+    name: factorio
+    sources:
+    - https://github.com/factoriotools/factorio-docker
+    - https://github.com/astrokube/helm-charts
+    type: application
+    urls:
+    - https://astrokube.github.io/helm-charts/factorio-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-03-11T19:56:11.803225827+01:00"
