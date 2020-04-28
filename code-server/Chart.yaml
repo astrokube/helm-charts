@@ -1,0 +1,16 @@
+apiVersion: v2
+name: code-server
+description: A Helm chart for CodeServer
+type: application
+version: 0.1.0
+appVersion: 3.1.1
+mantainers:
+  - name: Pasquale Toscano
+    email: pasquale.toscano@astrokube.com
+home: https://coder.com/
+sources:
+  - https://github.com/cdr/code-server
+  - https://github.com/astrokube/helm-charts
+keywords:
+  - code-server
+  - development
