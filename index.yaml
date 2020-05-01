@@ -3,7 +3,7 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: 3.1.1
-    created: "2020-04-28T19:55:06.498165811+02:00"
+    created: "2020-05-01T19:43:08.774047171+02:00"
     description: A Helm chart for CodeServer
     digest: 98e4835baf18a7947b763f9d631679c7624492b016dd90b07b7c3d132e7a8027
     home: https://coder.com/
@@ -21,7 +21,7 @@ entries:
   factorio:
   - apiVersion: v2
     appVersion: 0.18.9
-    created: "2020-04-28T19:55:06.498615034+02:00"
+    created: "2020-05-01T19:43:08.774610314+02:00"
     description: A Helm chart for Factorio server
     digest: dad06c684f33ca01d1cff8d5237ed5a5e9a1fe89299ca1cd849b071055ef7937
     home: https://factorio.com/
@@ -36,4 +36,22 @@ entries:
     urls:
     - https://astrokube.github.io/helm-charts/factorio-0.1.0.tgz
     version: 0.1.0
-generated: "2020-04-28T19:55:06.497510704+02:00"
+  minecraft:
+  - apiVersion: v2
+    appVersion: 1.15.2
+    created: "2020-05-01T19:43:08.775261505+02:00"
+    description: A Helm chart for Minecraft server
+    digest: 277bafc9151ac58974045de9d307b1603dcff3e8c9e0a8555b4c265240d3220e
+    home: https://www.minecraft.net
+    keywords:
+    - minecraft
+    - game
+    name: minecraft
+    sources:
+    - https://github.com/itzg/docker-minecraft-server
+    - https://github.com/astrokube/helm-charts
+    type: application
+    urls:
+    - https://astrokube.github.io/helm-charts/minecraft-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-05-01T19:43:08.773299136+02:00"
