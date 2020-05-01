@@ -1,0 +1,16 @@
+apiVersion: v2
+name: minecraft
+description: A Helm chart for Minecraft server
+type: application
+version: 0.1.0
+appVersion: 1.15.2
+mantainers:
+  - name: Pasquale Toscano
+    email: pasquale.toscano@astrokube.com
+home: https://www.minecraft.net
+sources:
+  - https://github.com/itzg/docker-minecraft-server
+  - https://github.com/astrokube/helm-charts
+keywords:
+  - minecraft
+  - game

@@ -1,0 +1,96 @@
+{{- if .Values.server.eula }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "minecraft.fullname" . }}
+  labels:
+    {{- include "minecraft.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "minecraft.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "minecraft.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "minecraft.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: minecraft
+              containerPort: 25565
+              protocol: TCP
+            - name: rcon
+              containerPort: 25575
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          startupProbe:
+            {{- toYaml .Values.startupProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: EULA
+              value: "{{ .Values.server.eula | toString | upper }}"
+            - name: ENABLE_RCON
+              value: "{{ .Values.rcon.enabled }}"
+            - name: RCON_PASSWORD
+              value: "{{ .Values.rcon.password }}"
+            - name: MEMORY
+              value: "{{ .Values.server.memory }}"
+            - name: DIFFICULTY
+              value: "{{ .Values.server.difficulty }}"
+            - name: VERSION
+              value: "{{ .Values.server.version }}"
+            - name: MAX_PLAYERS
+              value: "{{ .Values.server.maxPlayers }}"
+            - name: MOTD
+              value: "{{ .Values.server.motd }}"
+            - name: SPAWN_ANIMALES
+              value: "{{ .Values.server.spawnAnimals }}"
+            - name: SPAWN_MONSTERS
+              value: "{{ .Values.server.spawnMonsters }}"
+            - name: SPAWN_NPCs
+              value: "{{ .Values.server.spawnNPCs }}"
+            - name: MODE
+              value: "{{ .Values.server.gameMode }}"
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "minecraft.fullname" .) }}
+          {{- else }}
+          emptyDir: {}
+          {{ end }}
+{{ end }}

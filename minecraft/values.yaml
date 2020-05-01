@@ -1,0 +1,88 @@
+replicaCount: 1
+
+image:
+  repository: itzg/minecraft-server
+  pullPolicy: IfNotPresent
+  tag: latest
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name:
+
+podSecurityContext: {}
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 25565
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+startupProbe:
+  tcpSocket:
+    port: minecraft
+  failureThreshold: 9
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+
+livenessProbe:
+  tcpSocket:
+    port: minecraft
+  failureThreshold: 9
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+
+readinessProbe:
+  tcpSocket:
+    port: minecraft
+  failureThreshold: 5
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+
+server:
+  eula: false
+  memory: 512M
+  difficulty: easy
+  version: 1.15.2
+  maxPlayers: 20
+  motd: A Minecraft Server
+  spawnAnimals: true
+  spawnMonsters: true
+  spawnNPCs: true
+  generateStructures: true
+  gameMode: survival
+
+rcon:
+  enabled: true
+  password: 1234
+
+persistence:
+  enabled: false
+  accessMode: ReadWriteOnce
+  size: 1Gi
