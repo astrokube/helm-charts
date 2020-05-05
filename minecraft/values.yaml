@@ -86,6 +86,8 @@ server:
   spawnNPCs: true
   generateStructures: true
   gameMode: survival
+  jvmXXOpts: '-XX:+UseG1GC'
+  viewDistance: 10
 
 rcon:
   enabled: true

@@ -73,6 +73,12 @@ spec:
               value: "{{ .Values.server.spawnNPCs }}"
             - name: MODE
               value: "{{ .Values.server.gameMode }}"
+            - name: TYPE
+              value: "{{ .Values.server.type }}"
+            - name: JVM_XX_OPTS
+              value: "{{ .Values.server.jvmXXOpts }}"
+            - name: VIEW_DISTANCE
+              value: "{{ .Values.server.viewDistance }}"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
