@@ -39,8 +39,11 @@ tolerations: []
 affinity: {}
 
 startupProbe:
-  tcpSocket:
-    port: minecraft
+  exec:
+    command:
+      - mcstatus
+      - localhost:25565
+      - status
   failureThreshold: 9
   initialDelaySeconds: 20
   periodSeconds: 10
@@ -48,8 +51,11 @@ startupProbe:
   timeoutSeconds: 1
 
 livenessProbe:
-  tcpSocket:
-    port: minecraft
+  exec:
+    command:
+      - mcstatus
+      - localhost:25565
+      - status
   failureThreshold: 9
   initialDelaySeconds: 20
   periodSeconds: 10
@@ -57,8 +63,11 @@ livenessProbe:
   timeoutSeconds: 1
 
 readinessProbe:
-  tcpSocket:
-    port: minecraft
+  exec:
+    command:
+      - mcstatus
+      - localhost:25565
+      - status
   failureThreshold: 5
   initialDelaySeconds: 20
   periodSeconds: 10
