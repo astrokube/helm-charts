@@ -3,7 +3,7 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: 3.1.1
-    created: "2020-05-05T18:00:29.028134315+02:00"
+    created: "2020-05-15T11:45:30.6252205+02:00"
     description: A Helm chart for CodeServer
     digest: 98e4835baf18a7947b763f9d631679c7624492b016dd90b07b7c3d132e7a8027
     home: https://coder.com/
@@ -21,7 +21,7 @@ entries:
   factorio:
   - apiVersion: v2
     appVersion: 0.18.9
-    created: "2020-05-05T18:00:29.029929068+02:00"
+    created: "2020-05-15T11:45:30.625701665+02:00"
     description: A Helm chart for Factorio server
     digest: dad06c684f33ca01d1cff8d5237ed5a5e9a1fe89299ca1cd849b071055ef7937
     home: https://factorio.com/
@@ -39,7 +39,24 @@ entries:
   minecraft:
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-05-05T18:00:29.032059497+02:00"
+    created: "2020-05-15T11:45:30.630976549+02:00"
+    description: A Helm chart for Minecraft server
+    digest: 6b687bc8c49aed8c4786e94c6a6f2bb8e7f81c2d3c46687b12cae26ec1c67fb0
+    home: https://www.minecraft.net
+    keywords:
+    - minecraft
+    - game
+    name: minecraft
+    sources:
+    - https://github.com/itzg/docker-minecraft-server
+    - https://github.com/astrokube/helm-charts
+    type: application
+    urls:
+    - https://astrokube.github.io/helm-charts/minecraft-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: 1.15.2
+    created: "2020-05-15T11:45:30.630411765+02:00"
     description: A Helm chart for Minecraft server
     digest: 0cd89884740ca57dbae4914b9b7ef3019c36098a8904fd0047eef8ac8e1302a1
     home: https://www.minecraft.net
@@ -56,7 +73,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-05-05T18:00:29.031308404+02:00"
+    created: "2020-05-15T11:45:30.626310837+02:00"
     description: A Helm chart for Minecraft server
     digest: 277bafc9151ac58974045de9d307b1603dcff3e8c9e0a8555b4c265240d3220e
     home: https://www.minecraft.net
@@ -71,4 +88,4 @@ entries:
     urls:
     - https://astrokube.github.io/helm-charts/minecraft-0.1.0.tgz
     version: 0.1.0
-generated: "2020-05-05T18:00:29.02687346+02:00"
+generated: "2020-05-15T11:45:30.624536524+02:00"
