@@ -76,18 +76,28 @@ readinessProbe:
 
 server:
   eula: false
-  memory: 512M
-  difficulty: easy
+
+  # Install process
+  bukkitDownloadUrl: ''
+  paperDownloadUrl: ''
+  spigotDownloadUrl: ''
+  type: VANILLA
   version: 1.15.2
+
+  # server.properties
+  difficulty: easy
+  gameMode: survival
+  generateStructures: true
   maxPlayers: 20
   motd: A Minecraft Server
   spawnAnimals: true
   spawnMonsters: true
   spawnNPCs: true
-  generateStructures: true
-  gameMode: survival
-  jvmXXOpts: '-XX:+UseG1GC'
   viewDistance: 10
+
+  # JVM
+  jvmXXOpts: '-XX:+UseG1GC'
+  memory: 512M
 
 rcon:
   enabled: true

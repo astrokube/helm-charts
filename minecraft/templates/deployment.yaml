@@ -55,14 +55,28 @@ spec:
               value: "{{ .Values.rcon.enabled }}"
             - name: RCON_PASSWORD
               value: "{{ .Values.rcon.password }}"
-            - name: MEMORY
-              value: "{{ .Values.server.memory }}"
-            - name: DIFFICULTY
-              value: "{{ .Values.server.difficulty }}"
+
+            # Install process
+            - name: BUKKIT_DOWNLOAD_URL
+              value: "{{ .Values.server.bukkitDownloadUrl }}"
+            - name: PAPER_DOWNLOAD_URL
+              value: "{{ .Values.server.paperDownloadUrl }}"
+            - name: SPIGOT_DOWNLOAD_URL
+              value: "{{ .Values.server.spigotDownloadUrl }}"
+            - name: TYPE
+              value: "{{ .Values.server.type }}"
             - name: VERSION
               value: "{{ .Values.server.version }}"
+
+            # server.properties
+            - name: DIFFICULTY
+              value: "{{ .Values.server.difficulty }}"
+            - name: GENERATE_STRUCTURES
+              value: "{{ .Values.server.generateStructures }}"
             - name: MAX_PLAYERS
               value: "{{ .Values.server.maxPlayers }}"
+            - name: MODE
+              value: "{{ .Values.server.gameMode }}"
             - name: MOTD
               value: "{{ .Values.server.motd }}"
             - name: SPAWN_ANIMALES
@@ -71,14 +85,14 @@ spec:
               value: "{{ .Values.server.spawnMonsters }}"
             - name: SPAWN_NPCs
               value: "{{ .Values.server.spawnNPCs }}"
-            - name: MODE
-              value: "{{ .Values.server.gameMode }}"
-            - name: TYPE
-              value: "{{ .Values.server.type }}"
-            - name: JVM_XX_OPTS
-              value: "{{ .Values.server.jvmXXOpts }}"
             - name: VIEW_DISTANCE
               value: "{{ .Values.server.viewDistance }}"
+
+            # JVM
+            - name: JVM_XX_OPTS
+              value: "{{ .Values.server.jvmXXOpts }}"
+            - name: MEMORY
+              value: "{{ .Values.server.memory }}"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
