@@ -41,8 +41,7 @@ affinity: {}
 startupProbe:
   exec:
     command:
-      - mcstatus
-      - localhost:25565
+      - mc-monitor
       - status
   failureThreshold: 9
   initialDelaySeconds: 20
@@ -53,8 +52,7 @@ startupProbe:
 livenessProbe:
   exec:
     command:
-      - mcstatus
-      - localhost:25565
+      - mc-monitor
       - status
   failureThreshold: 9
   initialDelaySeconds: 20
@@ -65,8 +63,7 @@ livenessProbe:
 readinessProbe:
   exec:
     command:
-      - mcstatus
-      - localhost:25565
+      - mc-monitor
       - status
   failureThreshold: 5
   initialDelaySeconds: 20
