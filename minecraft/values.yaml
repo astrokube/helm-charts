@@ -90,6 +90,7 @@ server:
   generateStructures: true
   maxPlayers: 20
   motd: A Minecraft Server
+  ops: ''
   spawnAnimals: true
   spawnMonsters: true
   spawnNPCs: true

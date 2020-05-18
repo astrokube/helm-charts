@@ -68,6 +68,12 @@ spec:
             - name: VERSION
               value: "{{ .Values.server.version }}"
 
+            # Process
+            - name: CONSOLE
+              value: 'false'
+            - name: GUI
+              value: 'false'
+
             # server.properties
             - name: DIFFICULTY
               value: "{{ .Values.server.difficulty }}"
@@ -79,6 +85,8 @@ spec:
               value: "{{ .Values.server.gameMode }}"
             - name: MOTD
               value: "{{ .Values.server.motd }}"
+            - name: OPS
+              value: "{{ .Values.server.ops }}"
             - name: SPAWN_ANIMALES
               value: "{{ .Values.server.spawnAnimals }}"
             - name: SPAWN_MONSTERS
