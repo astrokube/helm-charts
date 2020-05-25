@@ -100,6 +100,10 @@ spec:
               value: "{{ .Values.server.jvmXXOpts }}"
             - name: MEMORY
               value: "{{ .Values.server.memory }}"
+            - name: USE_AIKAR_FLAGS
+              value: "{{ .Values.server.useAikarFlags | toString }}"
+            - name: USE_LARGE_PAGES
+              value: "{{ .Values.server.useLargePages | toString }}"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

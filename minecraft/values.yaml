@@ -96,6 +96,8 @@ server:
   # JVM
   jvmXXOpts: '-XX:+UseG1GC'
   memory: 512M
+  useAikarFlags: true
+  useLargePages: true
 
 rcon:
   enabled: true
