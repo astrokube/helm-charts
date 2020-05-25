@@ -1,14 +1,13 @@
 {{- if .Values.server.eula }}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "minecraft.fullname" . }}
   labels:
     {{- include "minecraft.labels" . | nindent 4 }}
 spec:
+  serviceName: {{ include "minecraft.fullname" . }}
   replicas: {{ .Values.replicaCount }}
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       {{- include "minecraft.selectorLabels" . | nindent 6 }}
