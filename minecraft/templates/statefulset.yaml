@@ -84,6 +84,8 @@ spec:
               value: "{{ .Values.server.gameMode }}"
             - name: MOTD
               value: "{{ .Values.server.motd }}"
+            - name: ONLINE_MODE
+              value: "{{ .Values.server.onlineMode | toString }}"
             - name: OPS
               value: "{{ .Values.server.ops }}"
             - name: SPAWN_ANIMALES
