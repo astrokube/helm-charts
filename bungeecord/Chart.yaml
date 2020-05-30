@@ -1,0 +1,16 @@
+apiVersion: v2
+name: bungeecord
+description: A Helm chart for Bungeecord server
+type: application
+version: 0.1.0
+appVersion: 1.7.10
+mantainers:
+  - name: Pasquale Toscano
+    email: pasquale.toscano@astrokube.com
+home: https://www.spigotmc.org/go/bungeecord
+sources:
+  - https://github.com/SpigotMC/BungeeCord
+  - https://github.com/astrokube/helm-charts
+keywords:
+  - minecraft
+  - game

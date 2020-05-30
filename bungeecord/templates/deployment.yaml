@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "bungeecord.fullname" . }}
+  labels:
+    {{- include "bungeecord.labels" . | nindent 4 }}
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "bungeecord.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        {{- include "bungeecord.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "bungeecord.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: bungeecord
+              containerPort: 25577
+              protocol: TCP
+          volumeMounts:
+            - name: server
+              mountPath: /server
+            - name: config
+              mountPath: /server/config.yml
+              subPath: config.yml
+          livenessProbe:
+            tcpSocket:
+              port: 25577
+          readinessProbe:
+            tcpSocket:
+              port: 25577
+          env:
+            - name: TYPE
+              value: {{ .Values.server.type }}
+            - name: MEMORY
+              value: {{ .Values.server.memory }}
+            - name: JVM_OPTS
+              value: {{ .Values.server.jvmOpts }}
+            - name: PLUGINS
+              value: {{ .Values.server.plugins }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "bungeecord.fullname" . }}
+        - name: server
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "bungeecord.fullname" .) }}
+          {{- else }}
+          emptyDir: {}
+          {{ end }}

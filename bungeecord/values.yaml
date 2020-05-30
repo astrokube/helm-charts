@@ -1,0 +1,52 @@
+replicaCount: 1
+
+image:
+  repository: pasqualet/bungeecord
+  pullPolicy: IfNotPresent
+  tag: openj9
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name:
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: LoadBalancer
+  port: 25565
+
+resources:
+  requests:
+    memory: 512M
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
+server:
+  type: BUNGEECORD
+  memory: 512m
+  jvmOpts: ""
+  plugins: ""
+  config:
+    servers:
+      mc:
+        motd: 'Minecraft server'
+        address: minecraft-internal:25565
+        restricted: false
+    priorities:
+      - mc
