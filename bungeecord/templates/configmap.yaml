@@ -22,14 +22,14 @@ data:
     timeout: 30000
     log_commands: false
     network_compression_threshold: 256
-    online_mode: true
+    online_mode: {{ .Values.server.config.onlineMode | toString }}
     disabled_commands:
     - disabledcommandhere
     servers:
 {{ toYaml .Values.server.config.servers | indent 6 }}
     listeners:
     - query_port: 25577
-      motd: '{{ .Values.server.motd }}'
+      motd: '{{ .Values.server.config.motd }}'
       tab_list: GLOBAL_PING
       query_enabled: false
       proxy_protocol: false
@@ -40,7 +40,7 @@ data:
 {{ toYaml .Values.server.config.priorities | indent 6 }}
       bind_local_address: true
       host: 0.0.0.0:25577
-      max_players: 1
+      max_players: {{ .Values.server.config.max_players }}
       tab_size: 60
       force_default_server: false
     ip_forward: true
@@ -50,6 +50,5 @@ data:
       md_5:
       - admin
     connection_throttle: 4000
-    # stats: 6e8ce02c-ce3a-4d24-ab49-bcd84c2baaca
     connection_throttle_limit: 3
     log_pings: true
