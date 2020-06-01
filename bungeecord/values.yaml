@@ -40,6 +40,7 @@ persistence:
 server:
   type: BUNGEECORD
   memory: 512m
+  motd: "&1Bugee server"
   jvmOpts: ""
   plugins: ""
   config:

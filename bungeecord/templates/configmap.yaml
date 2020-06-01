@@ -29,7 +29,7 @@ data:
 {{ toYaml .Values.server.config.servers | indent 6 }}
     listeners:
     - query_port: 25577
-      motd: '&1Bugee server'
+      motd: '{{ .Values.server.motd }}'
       tab_list: GLOBAL_PING
       query_enabled: false
       proxy_protocol: false
