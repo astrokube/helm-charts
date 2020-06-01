@@ -43,10 +43,5 @@ server:
   jvmOpts: ""
   plugins: ""
   config:
-    servers:
-      mc:
-        motd: 'Minecraft server'
-        address: minecraft-internal:25565
-        restricted: false
-    priorities:
-      - mc
+    servers: {}
+    priorities: []
