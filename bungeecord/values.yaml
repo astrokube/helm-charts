@@ -48,3 +48,16 @@ server:
     playerLimit: -1
     servers: {}
     priorities: []
+
+sftp:
+  enabled: false
+  image:
+    repository: emberstack/sftp
+    pullPolicy: IfNotPresent
+    tag: latest
+  password: changeme
+
+  service:
+    annotations: {}
+    type: ClusterIP
+    port: 22

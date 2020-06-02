@@ -1,20 +1,22 @@
+{{- if .Values.sftp.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "bungeecord.fullname" . }}
+  name: {{ include "bungeecord.fullname" . }}-sftp
   labels:
     {{- include "bungeecord.labels" . | nindent 4 }}
   annotations:
 {{ toYaml .Values.sftp.service.annotations | indent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.sftp.service.type }}
   {{- if .Values.sftp.service.loadBalancerIP }}
   loadBalancerIP: {{ .Values.sftp.service.loadBalancerIP }}
   {{- end }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: bungeecord
+    - port: {{ .Values.sftp.service.port }}
+      targetPort: sftp
       protocol: TCP
-      name: bungeecord
+      name: sftp
   selector:
     {{- include "bungeecord.selectorLabels" . | nindent 4 }}
+{{- end }}
