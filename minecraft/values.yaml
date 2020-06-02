@@ -108,3 +108,15 @@ persistence:
   enabled: false
   accessMode: ReadWriteOnce
   size: 1Gi
+
+sftp:
+  enabled: false
+  image:
+    repository: emberstack/sftp
+    pullPolicy: IfNotPresent
+    tag: latest
+  password: changeme
+
+  service:
+    type: ClusterIP
+    port: 22

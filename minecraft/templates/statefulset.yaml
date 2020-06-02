@@ -24,6 +24,22 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
+        {{- if .Values.sftp.enabled }}
+        - name: sftp
+          image: "{{ .Values.sftp.image.repository }}:{{ .Values.sftp.image.tag }}"
+          imagePullPolicy: {{ .Values.sftp.image.pullPolicy }}
+          ports:
+            - name: sftp
+              containerPort: 22
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /home/minecraft/sftp/data
+            - name: sftp-config
+              mountPath: /app/config/sftp.json
+              subPath: sftp.json
+              readOnly: true
+        {{- end }}
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -119,6 +135,12 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
+        - name: sftp-config
+          secret:
+            secretName: {{ include "minecraft.fullname" . }}
+            items:
+              - key: sftp-config
+                path: sftp.json
         - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:

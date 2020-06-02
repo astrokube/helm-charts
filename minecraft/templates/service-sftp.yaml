@@ -1,0 +1,17 @@
+{{- if .Values.sftp.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "minecraft.fullname" . }}-sftp
+  labels:
+    {{- include "minecraft.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.sftp.service.type }}
+  ports:
+    - port: {{ .Values.sftp.service.port }}
+      targetPort: sftp
+      protocol: TCP
+      name: sftp
+  selector:
+    {{- include "minecraft.selectorLabels" . | nindent 4 }}
+{{- end }}
