@@ -135,12 +135,14 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
+        {{- if .Values.sftp.enabled }}
         - name: sftp-config
           secret:
             secretName: {{ include "minecraft.fullname" . }}
             items:
               - key: sftp-config
                 path: sftp.json
+        {{- end }}
         - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
