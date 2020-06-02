@@ -2,7 +2,7 @@ apiVersion: v2
 name: bungeecord
 description: A Helm chart for Bungeecord server
 type: application
-version: 0.3.0
+version: 0.3.1
 appVersion: 1.7.10
 mantainers:
   - name: Pasquale Toscano
