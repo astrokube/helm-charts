@@ -18,6 +18,7 @@ podSecurityContext: {}
 securityContext: {}
 
 service:
+  annotations: {}
   type: ClusterIP
   port: 25565
 
@@ -118,5 +119,6 @@ sftp:
   password: changeme
 
   service:
+    annotations: {}
     type: ClusterIP
     port: 22

@@ -4,6 +4,8 @@ metadata:
   name: {{ include "minecraft.fullname" . }}
   labels:
     {{- include "minecraft.labels" . | nindent 4 }}
+  annotations:
+{{ toYaml .Values.service.annotations | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:

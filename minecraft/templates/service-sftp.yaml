@@ -5,6 +5,8 @@ metadata:
   name: {{ include "minecraft.fullname" . }}-sftp
   labels:
     {{- include "minecraft.labels" . | nindent 4 }}
+  annotations:
+{{ toYaml .Values.sftp.service.annotations | indent 4 }}
 spec:
   type: {{ .Values.sftp.service.type }}
   ports:
