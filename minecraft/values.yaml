@@ -112,6 +112,7 @@ persistence:
 
 sftp:
   enabled: false
+  deploymentType: container
   image:
     repository: emberstack/sftp
     pullPolicy: IfNotPresent

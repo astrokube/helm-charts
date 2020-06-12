@@ -1,0 +1,69 @@
+{{- if and (eq .Values.sftp.enabled true) (eq .Values.sftp.deploymentType "statefulset") }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "minecraft.fullname" . }}-sftp
+  labels:
+    {{- include "minecraft.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "minecraft.fullname" . }}
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "minecraft.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "minecraft.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "minecraft.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: sftp
+          image: "{{ .Values.sftp.image.repository }}:{{ .Values.sftp.image.tag }}"
+          imagePullPolicy: {{ .Values.sftp.image.pullPolicy }}
+          ports:
+            - name: sftp
+              containerPort: 22
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /home/minecraft/sftp/data
+            - name: sftp-config
+              mountPath: /app/config/sftp.json
+              subPath: sftp.json
+              readOnly: true
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+        {{- if .Values.sftp.enabled }}
+        - name: sftp-config
+          secret:
+            secretName: {{ include "minecraft.fullname" . }}
+            items:
+              - key: sftp-config
+                path: sftp.json
+        {{- end }}
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "minecraft.fullname" .) }}
+          {{- else }}
+          emptyDir: {}
+          {{ end }}
+{{ end }}

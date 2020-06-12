@@ -24,7 +24,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        {{- if .Values.sftp.enabled }}
+        {{- if and (eq .Values.sftp.enabled true) (eq .Values.sftp.deploymentType "container") }}
         - name: sftp
           image: "{{ .Values.sftp.image.repository }}:{{ .Values.sftp.image.tag }}"
           imagePullPolicy: {{ .Values.sftp.image.pullPolicy }}

@@ -12,9 +12,9 @@ spec:
       storage: {{ .Values.persistence.size | quote }}
   {{- if .Values.persistence.storageClass -}}
     {{- if (eq "-" .Values.persistence.storageClass) -}}
-      {{- printf "storageClassName: \"\"" -}}
+  storageClassName: ""
     {{- else }}
-      {{- printf "storageClassName: %s" .Values.persistence.storageClass -}}
+  storageClassName: {{ .Values.persistence.storageClass }}
     {{- end -}}
   {{- end -}}
 {{- end }}
