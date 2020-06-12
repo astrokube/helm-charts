@@ -3,7 +3,7 @@ entries:
   bungeecord:
   - apiVersion: v2
     appVersion: 1.7.10
-    created: "2020-06-02T18:51:01.151344419+02:00"
+    created: "2020-06-12T11:47:58.480266056+02:00"
     description: A Helm chart for Bungeecord server
     digest: 97afe7aa9265740f4786768ec08ea10ce178501d1b3667eeea98fe302ad1e118
     home: https://www.spigotmc.org/go/bungeecord
@@ -20,7 +20,7 @@ entries:
     version: 0.4.1
   - apiVersion: v2
     appVersion: 1.7.10
-    created: "2020-06-02T18:51:01.150731681+02:00"
+    created: "2020-06-12T11:47:58.479689714+02:00"
     description: A Helm chart for Bungeecord server
     digest: c3c246ea6d12e1d152e06f69b01505dc44d12590ffcb2d3e6d2fcd0a60458f23
     home: https://www.spigotmc.org/go/bungeecord
@@ -37,7 +37,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: 1.7.10
-    created: "2020-06-02T18:51:01.150313775+02:00"
+    created: "2020-06-12T11:47:58.479318449+02:00"
     description: A Helm chart for Bungeecord server
     digest: b94a03449de6c7c70f782787fe81ddfa154f7fbfe4852228ad64665b65b67d79
     home: https://www.spigotmc.org/go/bungeecord
@@ -54,7 +54,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 1.7.10
-    created: "2020-06-02T18:51:01.149698248+02:00"
+    created: "2020-06-12T11:47:58.478957671+02:00"
     description: A Helm chart for Bungeecord server
     digest: fc4f3c97f486f2d283733328cf9610b439803292a399bd22bdd44c7655189818
     home: https://www.spigotmc.org/go/bungeecord
@@ -71,7 +71,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 1.7.10
-    created: "2020-06-02T18:51:01.149186674+02:00"
+    created: "2020-06-12T11:47:58.478574941+02:00"
     description: A Helm chart for Bungeecord server
     digest: fa93834e99b77f9337965555306d80aab501b6cde5923bffe1125a68a2fc7a13
     home: https://www.spigotmc.org/go/bungeecord
@@ -88,7 +88,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.7.10
-    created: "2020-06-02T18:51:01.148660869+02:00"
+    created: "2020-06-12T11:47:58.478140302+02:00"
     description: A Helm chart for Bungeecord server
     digest: 44ff7633b0d90eb8ea06bfd1cf705b454cde85c51a012582fd929deee910e2b8
     home: https://www.spigotmc.org/go/bungeecord
@@ -106,7 +106,7 @@ entries:
   code-server:
   - apiVersion: v2
     appVersion: 3.1.1
-    created: "2020-06-02T18:51:01.151702213+02:00"
+    created: "2020-06-12T11:47:58.480741041+02:00"
     description: A Helm chart for CodeServer
     digest: 98e4835baf18a7947b763f9d631679c7624492b016dd90b07b7c3d132e7a8027
     home: https://coder.com/
@@ -124,7 +124,7 @@ entries:
   factorio:
   - apiVersion: v2
     appVersion: 0.18.9
-    created: "2020-06-02T18:51:01.152023931+02:00"
+    created: "2020-06-12T11:47:58.482585056+02:00"
     description: A Helm chart for Factorio server
     digest: dad06c684f33ca01d1cff8d5237ed5a5e9a1fe89299ca1cd849b071055ef7937
     home: https://factorio.com/
@@ -142,7 +142,24 @@ entries:
   minecraft:
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.161212113+02:00"
+    created: "2020-06-12T11:47:58.491343885+02:00"
+    description: A Helm chart for Minecraft server
+    digest: becb6ce2c7751a950f3df163eb7a5fc45f7c60c1ce9bc991eaae5324cbe269b8
+    home: https://www.minecraft.net
+    keywords:
+    - minecraft
+    - game
+    name: minecraft
+    sources:
+    - https://github.com/itzg/docker-minecraft-server
+    - https://github.com/astrokube/helm-charts
+    type: application
+    urls:
+    - https://astrokube.github.io/helm-charts/minecraft-0.8.0.tgz
+    version: 0.8.0
+  - apiVersion: v2
+    appVersion: 1.15.2
+    created: "2020-06-12T11:47:58.490356766+02:00"
     description: A Helm chart for Minecraft server
     digest: af0469c4ab6415d7789af4dd0191f63408f25b7a78d1ad25e7d525cdf5b8dbb7
     home: https://www.minecraft.net
@@ -159,7 +176,7 @@ entries:
     version: 0.7.1
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.160176125+02:00"
+    created: "2020-06-12T11:47:58.489407205+02:00"
     description: A Helm chart for Minecraft server
     digest: 92928c9f6b763d2b102e1d26924bd45ac31ddfd3421d6d1308ffd4d6f1042a82
     home: https://www.minecraft.net
@@ -176,7 +193,7 @@ entries:
     version: 0.7.0
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.159540104+02:00"
+    created: "2020-06-12T11:47:58.48847128+02:00"
     description: A Helm chart for Minecraft server
     digest: a276b57600e5f2aac19f3d8fe66023f3ee5810795ac3a520e7777cd5601b8894
     home: https://www.minecraft.net
@@ -193,7 +210,7 @@ entries:
     version: 0.6.0
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.158335152+02:00"
+    created: "2020-06-12T11:47:58.48778405+02:00"
     description: A Helm chart for Minecraft server
     digest: 9f8d8afab0272e3d7deeee61158020a95160fa74cf493033cab4531d2a2080e0
     home: https://www.minecraft.net
@@ -210,7 +227,7 @@ entries:
     version: 0.5.1
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.157243803+02:00"
+    created: "2020-06-12T11:47:58.486942303+02:00"
     description: A Helm chart for Minecraft server
     digest: 6381cb2ca161797a22232a921ebad82aaec83ea9f8ea28740f21a3dbc589f7b3
     home: https://www.minecraft.net
@@ -227,7 +244,7 @@ entries:
     version: 0.5.0
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.156606029+02:00"
+    created: "2020-06-12T11:47:58.48636082+02:00"
     description: A Helm chart for Minecraft server
     digest: 457be7b88d18c3b0690a65d5d74f90ee162bfdc625c00c80611ce5361c655a1f
     home: https://www.minecraft.net
@@ -244,7 +261,7 @@ entries:
     version: 0.4.1
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.156120696+02:00"
+    created: "2020-06-12T11:47:58.485712748+02:00"
     description: A Helm chart for Minecraft server
     digest: bc0b833d81375aad355be0abbf22395cfff6c8c9efcb872a42c7dd3b021b7fe6
     home: https://www.minecraft.net
@@ -261,7 +278,7 @@ entries:
     version: 0.4.0
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.155186533+02:00"
+    created: "2020-06-12T11:47:58.484854519+02:00"
     description: A Helm chart for Minecraft server
     digest: 6b687bc8c49aed8c4786e94c6a6f2bb8e7f81c2d3c46687b12cae26ec1c67fb0
     home: https://www.minecraft.net
@@ -278,7 +295,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.154580666+02:00"
+    created: "2020-06-12T11:47:58.484195025+02:00"
     description: A Helm chart for Minecraft server
     digest: 0cd89884740ca57dbae4914b9b7ef3019c36098a8904fd0047eef8ac8e1302a1
     home: https://www.minecraft.net
@@ -295,7 +312,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 1.15.2
-    created: "2020-06-02T18:51:01.152841935+02:00"
+    created: "2020-06-12T11:47:58.483586276+02:00"
     description: A Helm chart for Minecraft server
     digest: 277bafc9151ac58974045de9d307b1603dcff3e8c9e0a8555b4c265240d3220e
     home: https://www.minecraft.net
@@ -310,4 +327,4 @@ entries:
     urls:
     - https://astrokube.github.io/helm-charts/minecraft-0.1.0.tgz
     version: 0.1.0
-generated: "2020-06-02T18:51:01.147836923+02:00"
+generated: "2020-06-12T11:47:58.477527686+02:00"
