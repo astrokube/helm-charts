@@ -52,6 +52,14 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{/*
+Selector labels for STFP
+*/}}
+{{- define "bungeecord.selectorLabelsSftp" -}}
+app.kubernetes.io/name: {{ include "bungeecord.name" . }}-sftp
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "bungeecord.serviceAccountName" -}}
