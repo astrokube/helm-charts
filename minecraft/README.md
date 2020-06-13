@@ -22,7 +22,7 @@
 | `server.spawnAnimals`       | Enable the animals spawn                                                | `true`               |
 | `server.spawnMonsters`      | Enable the monsters spawn                                               | `true`               |
 | `server.spawnNPCs`          | Enable the NPCs spawn                                                   | `true`               |
-| `server.viewDinstance`      | Set the dinstance view                                                  | `10`                 |
+| `server.viewDistance`       | Set the distance view                                                   | `10`                 |
 
 ## Minecraft deployment parameters
 

@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: {{ include "minecraft.fullname" . }}-sftp
   labels:
-    {{- include "minecraft.labels" . | nindent 4 }}
+    {{- include "minecraft.labelsSftp" . | nindent 4 }}
   annotations:
 {{ toYaml .Values.sftp.service.annotations | indent 4 }}
 spec:
@@ -18,5 +18,9 @@ spec:
       protocol: TCP
       name: sftp
   selector:
+    {{- if eq .Values.sftp.deploymentType "statefulset" }}
+    {{- include "minecraft.selectorLabelsSftp" . | nindent 4 }}
+    {{- else }}
     {{- include "minecraft.selectorLabels" . | nindent 4 }}
+    {{- end}}
 {{- end }}
