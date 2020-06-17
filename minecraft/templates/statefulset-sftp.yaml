@@ -4,17 +4,17 @@ kind: StatefulSet
 metadata:
   name: {{ include "minecraft.fullname" . }}-sftp
   labels:
-    {{- include "minecraft.labels" . | nindent 4 }}
+    {{- include "minecraft.labelsSftp" . | nindent 4 }}
 spec:
   serviceName: {{ include "minecraft.fullname" . }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "minecraft.selectorLabels" . | nindent 6 }}
+      {{- include "minecraft.selectorLabelsSftp" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "minecraft.selectorLabels" . | nindent 8 }}
+        {{- include "minecraft.selectorLabelsSftp" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

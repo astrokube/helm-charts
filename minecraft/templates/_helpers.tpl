@@ -44,10 +44,30 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
+Common labels for SFTP
+*/}}
+{{- define "minecraft.labelsSftp" -}}
+helm.sh/chart: {{ include "minecraft.chart" . }}
+{{ include "minecraft.selectorLabelsSftp" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
 Selector labels
 */}}
 {{- define "minecraft.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "minecraft.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+
+{{/*
+Selector labels for SFTP
+*/}}
+{{- define "minecraft.selectorLabelsSftp" -}}
+app.kubernetes.io/name: {{ include "minecraft.name" . }}-sftp
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
