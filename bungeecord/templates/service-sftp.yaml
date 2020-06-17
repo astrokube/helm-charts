@@ -18,5 +18,9 @@ spec:
       protocol: TCP
       name: sftp
   selector:
+    {{- if eq .Values.sftp.deploymentType "statefulset" }}
+    {{- include "bungeecord.selectorLabelsSftp" . | nindent 4 }}
+    {{- else }}
     {{- include "bungeecord.selectorLabels" . | nindent 4 }}
+    {{- end}}
 {{- end }}

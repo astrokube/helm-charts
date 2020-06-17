@@ -24,7 +24,7 @@ service:
 
 resources:
   requests:
-    memory: 512M
+    memory: 512Mi
 
 nodeSelector: {}
 
@@ -51,6 +51,7 @@ server:
 
 sftp:
   enabled: false
+  deploymentType: container
   image:
     repository: emberstack/sftp
     pullPolicy: IfNotPresent

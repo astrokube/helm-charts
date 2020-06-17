@@ -1,22 +1,20 @@
+{{- if and (eq .Values.sftp.enabled true) (eq .Values.sftp.deploymentType "statefulset") }}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ include "bungeecord.fullname" . }}
+  name: {{ include "bungeecord.fullname" . }}-sftp
   labels:
     {{- include "bungeecord.labels" . | nindent 4 }}
-  annotations:
-    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
 spec:
+  serviceName: {{ include "bungeecord.fullname" . }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "bungeecord.selectorLabels" . | nindent 6 }}
-  strategy:
-    type: Recreate
+      {{- include "bungeecord.selectorLabelsSftp" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "bungeecord.selectorLabels" . | nindent 8 }}
+        {{- include "bungeecord.selectorLabelsSftp" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -26,7 +24,6 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        {{- if and (eq .Values.sftp.enabled true) (eq .Values.sftp.deploymentType "container") }}
         - name: sftp
           image: "{{ .Values.sftp.image.repository }}:{{ .Values.sftp.image.tag }}"
           imagePullPolicy: {{ .Values.sftp.image.pullPolicy }}
@@ -35,45 +32,12 @@ spec:
               containerPort: 22
               protocol: TCP
           volumeMounts:
-            - name: server
+            - name: data
               mountPath: /home/minecraft/sftp/data
             - name: sftp-config
               mountPath: /app/config/sftp.json
               subPath: sftp.json
               readOnly: true
-        {{- end }}
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: bungeecord
-              containerPort: 25577
-              protocol: TCP
-          volumeMounts:
-            - name: server
-              mountPath: /server
-            - name: config
-              mountPath: /server/config.yml
-              subPath: config.yml
-          livenessProbe:
-            tcpSocket:
-              port: 25577
-          readinessProbe:
-            tcpSocket:
-              port: 25577
-          env:
-            - name: TYPE
-              value: {{ .Values.server.type }}
-            - name: MEMORY
-              value: {{ .Values.server.memory }}
-            - name: JVM_OPTS
-              value: {{ .Values.server.jvmOpts }}
-            - name: PLUGINS
-              value: {{ .Values.server.plugins }}
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -95,13 +59,11 @@ spec:
               - key: sftp-config
                 path: sftp.json
         {{- end }}
-        - name: config
-          configMap:
-            name: {{ include "bungeecord.fullname" . }}
-        - name: server
+        - name: data
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim | default (include "bungeecord.fullname" .) }}
           {{- else }}
           emptyDir: {}
           {{ end }}
+{{ end }}
