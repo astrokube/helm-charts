@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: {{ include "bungeecord.fullname" . }}-sftp
   labels:
-    {{- include "bungeecord.labels" . | nindent 4 }}
+    {{- include "bungeecord.labelsSftp" . | nindent 4 }}
   annotations:
 {{ toYaml .Values.sftp.service.annotations | indent 4 }}
 spec:
