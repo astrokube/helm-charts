@@ -44,6 +44,18 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
+Common labels for SFTP
+*/}}
+{{- define "bungeecord.labelsSftp" -}}
+helm.sh/chart: {{ include "bungeecord.chart" . }}
+{{ include "bungeecord.selectorLabelsSftp" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
 Selector labels
 */}}
 {{- define "bungeecord.selectorLabels" -}}
